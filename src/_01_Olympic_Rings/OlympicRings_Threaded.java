@@ -1,15 +1,17 @@
 package _01_Olympic_Rings;
 
+import java.awt.Color;
+
 import org.jointheleague.graphical.robot.Robot;
 
 public class OlympicRings_Threaded {
 	// Make A Program that uses Threads and robots to draw the Olympic rings. One robot should draw one ring simultaneously with the other 4 robots.
 	public static void main(String[] args) {
 		Robot blue = new Robot(300, 300);
-		Robot yellow = new Robot(500, 600);
-		Robot black = new Robot(700, 300);
-		Robot green = new Robot(900, 600);
-		Robot red = new Robot(1100, 300);
+		Robot yellow = new Robot(400, 450);
+		Robot black = new Robot(500, 300);
+		Robot green = new Robot(600, 450);
+		Robot red = new Robot(700, 300);
 		
 		blue.setSpeed(10);
 		yellow.setSpeed(10);
@@ -17,19 +19,54 @@ public class OlympicRings_Threaded {
 		green.setSpeed(10);
 		red.setSpeed(10);
 		
-		timmy.move(400);
-		tammy.move(400);
-		sammy.move(400);
+		blue.penDown();
+		yellow.penDown();
+		black.penDown();
+		green.penDown();
+		red.penDown();
 		
-		timmy.moveTo(400, 700);
-		tammy.moveTo(800, 700);
-		sammy.moveTo(1200, 700);
+		blue.setPenColor(Color.BLUE);
+		yellow.setPenColor(Color.YELLOW);
+		black.setPenColor(Color.BLACK);
+		green.setPenColor(Color.green);
+		red.setPenColor(Color.RED);
 		
-		Thread r1 = new Thread(()->(blue.move(400) , blue.turn(0)));
-		Thread r2 = new Thread(()->yellow.move(400));
-		Thread r3 = new Thread(()->black.move(400));
-		Thread r4 = new Thread(()->green.move(400));
-		Thread r5 = new Thread(()->red.move(400));
+		blue.setPenWidth(10);
+		yellow.setPenWidth(10);
+		black.setPenWidth(10);
+		green.setPenWidth(10);
+		red.setPenWidth(10);
+		
+		Thread r1 = new Thread( ()-> {
+			for (int i = 0; i < 100; i++) {
+				blue.move(10);
+				blue.turn(5);
+			}
+		});
+		Thread r2 = new Thread( ()-> {
+			for (int i = 0; i < 100; i++) {
+				yellow.move(10);
+				yellow.turn(5);
+			}
+		});
+		Thread r3 = new Thread( ()-> {
+			for (int i = 0; i < 100; i++) {
+				black.move(10);
+				black.turn(5);
+			}
+		});
+		Thread r4 = new Thread( ()-> {
+			for (int i = 0; i < 100; i++) {
+				green.move(10);
+				green.turn(5);
+			}
+		});
+		Thread r5 = new Thread( ()-> {
+			for (int i = 0; i < 100; i++) {
+				red.move(10);
+				red.turn(5);
+			}
+		});
 		
 		r1.start();
 		r2.start();
